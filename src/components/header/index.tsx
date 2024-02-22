@@ -1,14 +1,30 @@
-import { Container, LogoContainer, ButtonContainer, ButtonIcon } from "./style";
+import { 
+  Container, 
+  LogoContainer, 
+  ButtonContainer, 
+  ButtonIcon, 
+  SearchContainer,
+  SearchInputContainer,
+  SearchInput,
+  SearchButton,
+  HeaderButton
+  
+} from "./style";
+
 import HamburguerIcon from "../..//assets/hamburger.png"
 //import Logo from "../../assets/YouTube-Logo.png" //Logo oficial do youtube.
 //import Logo from "../../assets/YTCat.gif" //Yoodles oficial do Youtube (International Cat Day (August 8th)) single looping.
 import Logo from "../../assets/YouTubeCat.gif" //Yoodles oficial do Youtube (International Cat Day (August 8th)) infinite looping.
+import SearchIcon from "../../assets/search.png"
+import MicIcon from "../../assets/microfone-gravador.png"
+import VideoIcon from "../../assets/video.png"
+import NotificationIcon from "../../assets/sino.png"
 
 function Header() {
   return (
     <Container>
       <LogoContainer>
-        <ButtonContainer>
+        <ButtonContainer margin= "0 10px 0 0">
           <ButtonIcon alt="" src={HamburguerIcon} />
         </ButtonContainer>
         <img
@@ -17,6 +33,33 @@ function Header() {
           src={Logo}
          />
       </LogoContainer>
+
+      <SearchContainer>
+        <SearchInputContainer>
+          <SearchInput placeholder="Pesquisar" />
+
+        </SearchInputContainer>
+        <SearchButton>
+          <ButtonIcon alt="" src={SearchIcon} />
+        </SearchButton>
+        <ButtonContainer margin= "0 0 0 10px">
+          <ButtonIcon alt="" src={MicIcon} />
+        </ButtonContainer>
+      </SearchContainer>
+
+      <HeaderButton>
+        <ButtonContainer margin= "0 0 0 10px">
+          <ButtonIcon alt="" src={VideoIcon} />
+        </ButtonContainer>
+        <ButtonContainer margin= "0 0 0 10px">
+          <ButtonIcon alt="" src={NotificationIcon} />
+        </ButtonContainer>
+        <ButtonContainer margin= "0 0 0 10px">
+          AS
+        </ButtonContainer>
+        
+
+      </HeaderButton>
 
     </Container>
   )
