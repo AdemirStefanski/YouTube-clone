@@ -9,7 +9,7 @@ import {
   SearchButton,
   HeaderButton
   
-} from "./style";
+} from "./styles";
 
 import HamburguerIcon from "../..//assets/hamburger.png"
 //import Logo from "../../assets/YouTube-Logo.png" //Logo oficial do youtube.
@@ -19,12 +19,17 @@ import SearchIcon from "../../assets/search.png"
 import MicIcon from "../../assets/microfone-gravador.png"
 import VideoIcon from "../../assets/video.png"
 import NotificationIcon from "../../assets/sino.png"
+import { useContext } from "react";
+import { MenuContext } from "../../contexts/menuContext";
+
 
 function Header() {
+  const {menuState, setMenuState} = useContext(MenuContext);
+
   return (
     <Container>
       <LogoContainer>
-        <ButtonContainer margin= "0 10px 0 0">
+        <ButtonContainer onClick={() => setMenuState(!menuState)} margin= "0 10px 0 0">
           <ButtonIcon alt="" src={HamburguerIcon} />
         </ButtonContainer>
         <img

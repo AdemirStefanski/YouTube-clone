@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Alterar a barra de bolagem no Firefox */
+* {
+  scrollbar-width: 10px;
+  scrollbar-color: #8c8c8c;
+}
+
+/* Alterar a barra de bolagem no Chrome e Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Alterar a barra de bolagem no Chrome e Safari */
+*::-webkit-scrollbar-thumb {
+  background-color: #8c8c8c;
+  border-radius: 20px;
+}
