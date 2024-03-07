@@ -24,36 +24,31 @@ import SettingsIcon from "../../assets/sino.png";
 import ReportHistoryIcon from "../../assets/sino.png";
 import HelpIcon from "../../assets/sino.png";
 import SendFeedbackIcon from "../../assets/sino.png";
+import { useNavigate } from "react-router-dom";
 
 //const items =[0,0,0] //array simulando a lista de itens do menu que viria do backend;
 
 const items = [
-  "Home",
-  "Shorts",
-  "Subscriptions",
-  "Your channel",
-  "History",
-  "Your Videos",
-  "Watch Later",
+  {name: "Home", link: "/"},
+  {name: "Shorts", link: "/shorts"},
+  {name: "Subscriptions", link: "/subscriptions"},
+  {name: "Your channel", link: "/yourchannel"},
+  {name: "History", link: "/history"},
+  {name: "Your Videos", link: "/yourvideos"},
+  {name: "Watch Later", link: "/watchlater"}
+  
 ];
-
-const itemOBJ = {
-  Home: "HomeIcon",
-  Shorts: "ShortsIcon",
-  Subscriptions: "SubscriptionsIcon",
-};
-
 
 
 function Menu() {
   const { menuState } = useContext(MenuContext);
-
+  const navigate = useNavigate();
   return (
     <Container menuState={menuState}>
       {items.map((item) => (
-        <MenuItem menuState={menuState}>
+        <MenuItem menuState={menuState} onClick={() => navigate(item.link)}>
           <ButtonIcon alt="" src={Home} />
-          <span>{item}</span>
+          <span>{item.name}</span>
         </MenuItem>
       ))}
     </Container>

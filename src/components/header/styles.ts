@@ -9,7 +9,9 @@ export const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed; //para o header ficar fixo no topo. Sem necessidade do top: , pois é o primeiro elemento e já esta no topo da página.
+  //position: fixed; //para o header ficar fixo no topo. Sem necessidade do top: , pois é o primeiro elemento e já esta no topo da página.
+  position: sticky;
+  top: 0;
 `;
 
 export const LogoContainer = styled.div`
