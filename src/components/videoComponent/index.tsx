@@ -1,6 +1,6 @@
 import { ChannelImage, Container, ImageBanner, TextCard, TextContainer, Title, TitleContainer } from "./styles";
 
-function VideoComponent() {
+function VideoComponent( { video }: any) {
 
   return (
     <Container>
@@ -10,9 +10,9 @@ function VideoComponent() {
           AS
         </ChannelImage>
         <TextContainer>
-          <Title>Nina Simone: Strange Fruit (Live in Antibes, 1965) - Lyric Video</Title>
-          <TextCard>Nina Simone</TextCard>
-          <TextCard>18K views - 3 months ago</TextCard>
+          <Title>{video.title}</Title>
+          <TextCard>{video.channel}</TextCard>
+          <TextCard>{video.viewes} views - { video.time} ago</TextCard>
         </TextContainer>
       </TitleContainer>
     </Container>

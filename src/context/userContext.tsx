@@ -4,7 +4,7 @@ import api from "../api";
 export const UserContext = createContext( {} as any);
 
 export const UserStorage = ({ children }: any) => {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token") as string);
 
@@ -21,6 +21,13 @@ export const UserStorage = ({ children }: any) => {
   useEffect(() => {
     getUser(token);
   },[token])
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    setLogin(false);
+    setUser({});
+  }
+
 
 //trazer os dados do usuário; salvar no token no localStorage para quando o usuário recarregar a página ele não precisar fazer o login novamente.
   const handleLogin = (email: string, password: string) => {
@@ -39,7 +46,8 @@ export const UserStorage = ({ children }: any) => {
     <UserContext.Provider value ={{
       login,
       user,
-      handleLogin
+      handleLogin,
+      logOut
     }}>
       {children}
     </UserContext.Provider>
