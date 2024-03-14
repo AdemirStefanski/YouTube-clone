@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Alterar a barra de bolagem no Firefox */
+* {
+  scrollbar-width: 10px;
+  scrollbar-color: #8c8c8c;
+}
+
+/* Alterar a barra de bolagem no Chrome e Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Alterar a barra de bolagem no Chrome e Safari */
+*::-webkit-scrollbar-thumb {
+  background-color: #8c8c8c;
+  border-radius: 20px;
+}

@@ -1,56 +1,108 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MenuContext } from "../../contexts/menuContext";
+import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
-import { Container, BackButton, SubMenuItem, ForwardButton, ButtonContainer  } from "./styles";
+import {
+  Container,
+  Button,
+  SliderButtons,
+  ButtonIcon,
+  Slider,
+  SliderContent,
+} from "./styles";
 
-import BackButtonIcon from "../../assets/back_button.png"
-import ForwardButtonIcon from "../../assets/forward_button.png"
-
-const subMenuItems = [
-  { name: "All", link: "/"},
-  { name: "Live", link: "/"},
-  { name: "Gaming", link: "/"},
-  { name: "Music", link: "/"},
-  { name:  "Mixes", link: "/"},
-  { name: "Avatar: The Last Airbender", link: "/"},
-  { name: "Strategy video games", link: "/"},
-  { name: "Japanese Cuisine", link: "/"},
-  { name: "Musical ensembles", link: "/"},
-  { name: "Classic Music", link: "/"},
-  { name: "Recently uploaded", link: "/"},
-  { name: "Watched", link: "/"},
-  { name: "New to you", link: "/"},
-  { name: "Recently uploaded", link: "/"},
-  { name: "Watched", link: "/"},
-  { name: "New to you", link: "/"},
-  { name: "Recently uploaded", link: "/"},
-  { name: "Watched", link: "/"},
-  { name: "New to you", link: "/"},
-];
+import BackButtonIcon from "../../assets/back_button.png";
+import ForwardButtonIcon from "../../assets/forward_button.png";
+import { useCategoryContext } from "../../contexts/searchCategories";
 
 function SubMenu() {
+  const { openMenu } = useAppContext();
 
-  
+  const [sliderPosition, setSliderPosition] = useState(0);
+
+  const sliderWidth = 200; // largura do slider
+  const containerWidth = 400; // largura do contêiner
+
+  const handleNextClick = () => {
+    // verifica se a nova posição do slider é menor que a largura total do slider menos a largura do contêiner
+    if (sliderPosition > -(sliderWidth * 12) + containerWidth) {
+      setSliderPosition((prevPosition) => prevPosition - sliderWidth);
+    }
+  };
+
+  const handleBackClick = () => {
+    // verifica se a nova posição do slider é maior que zero
+    if (sliderPosition < 0) {
+      setSliderPosition((prevPosition) => prevPosition + sliderWidth);
+    }
+  };
+
+  const subMenuItems = [
+    { name: "Tudo", id: "0" },
+    { name: "Games", id: "20" },
+    { name: "Futebol", id: "17" },
+    { name: "Entretenimento", id: "24" },
+    { name: "Música", id: "10" },
+    { name: "Pessoas e blogs", id: "22" },
+    { name: "Automóveis e veículos", id: "2" },
+    { name: "Animais e pets", id: "15" },
+    { name: "Notícias e política", id: "25" },
+    { name: "Comédia", id: "23" },
+    { name: "Shorts", id: "26" },
+    { name: "Infantil", id: "1" },
+    { name: "Vida a dois", id: "22" },
+    { name: "Esportes", id: "17" },
+    { name: "Memes", id: "23" },
+    { name: "Jogos pc", id: "20" },
+    { name: "Jornais", id: "25" },
+    { name: "Kids", id: "1" },
+    { name: "Hits do momento", id: "10" },
+    { name: "História das civilizações", id: "22" },
+    { name: "Ciências", id: "15" },
+    { name: "Viagens pelo mundo", id: "24" },
+    { name: "Séries", id: "23" },
+    { name: "Novidades", id: "24" },
+    { name: "Educação", id: "1" },
+    { name: "Ciência e tecnologia", id: "2" },
+    { name: "Documentários", id: "26" },
+    { name: "Economia", id: "25" },
+    { name: "Investimentos e finanças", id: "20" },
+    { name: "Moda e estilo", id: "23" },
+    { name: "Comunicação", id: "10" },
+    { name: "Beleza", id: "24" },
+  ];
+
+  const { setCategoryId } = useCategoryContext();
+
+  function searchCategory(id: string) {
+    setCategoryId(id);
+  }
 
   const { menuState } = useContext(MenuContext);
   const navigate = useNavigate();
 
-
-  
   return (
     <Container menuState={menuState}>
-      <ButtonContainer>
-        <BackButton alt="" src={BackButtonIcon}/>
-      </ButtonContainer>
-      {subMenuItems.map((item) => (
-        <SubMenuItem menuState = {menuState} onClick={() => navigate(item.link)} >
-          <span>{item.name}</span>
-        </SubMenuItem>
-      ))}
-      <ButtonContainer>
-        <ForwardButton alt="" src={ForwardButtonIcon} />
-      </ButtonContainer>
-      
+      <SliderButtons onClick={handleBackClick}>
+        <ButtonIcon alt="ícone voltar" src={BackButtonIcon} />
+      </SliderButtons>
+      <Slider>
+        <SliderContent
+          style={{
+            transform: `translateX(${sliderPosition}px)`,
+            transition: "0.5s ease-in-out",
+          }}
+        >
+          {subMenuItems.map((button, index) => (
+            <Button onClick={() => searchCategory(button.id)} key={index}>
+              {button.name}
+            </Button>
+          ))}
+        </SliderContent>
+      </Slider>
+      <SliderButtons onClick={handleNextClick}>
+        <ButtonIcon alt="ícone próximo" src={ForwardButtonIcon} />
+      </SliderButtons>
     </Container>
   );
 }

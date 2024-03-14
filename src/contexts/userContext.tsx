@@ -4,7 +4,7 @@ import api from "../api";
 export const UserContext = createContext( {} as any);
 
 export const UserStorage = ({ children }: any) => {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(true); //estado do login do usuário. Começa com false para que o usuário se logue.
   const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token") as string);
 

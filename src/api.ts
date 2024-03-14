@@ -1,13 +1,10 @@
 import axios from "axios";
 
-//const token = localStorage.getItem("token");
-
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   headers: {
-    "Acess-Control-Allo-Origin": "*",
-    "Content-Type": "aplication/json",
-    //"Authorization": token
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
   }
 })
 

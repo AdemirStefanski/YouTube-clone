@@ -1,29 +1,33 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ menuState: boolean }>`
-  width: ${({ menuState }) => (menuState ? "82%" : "93%")};
+interface ContainerProps {
+  openMenu: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+  width: ${({openMenu}) => openMenu? '82%' : '93%'};
   height: 56px;
   position: fixed;
   top: 55px;
   right: 0;
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({theme}) => theme.colors.secondary};
   z-index: 1;
 
-  @media (max-width: 1024px) {
-    width: ${({ menuState }) => (menuState ? "73%" : "92%")};
+  @media(max-width: 1024px) {
+    width: ${({openMenu}) => openMenu? '73%' : '92%'};
   }
 
-  @media (max-width: 834px) {
+  @media(max-width: 834px) {
     width: 88%;
   }
 
-  @media (max-width: 688px) {
+  @media(max-width: 688px) {
     width: 80%;
   }
 
-  @media (max-width: 414px) {
+  @media(max-width: 414px) {
     width: 100%;
   }
 `;
@@ -41,11 +45,11 @@ export const Button = styled.button`
   outline: none;
   font-size: 14px;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.bgColor};
+  color: ${({theme}) => theme.colors.primary};
+  background-color: ${({theme}) => theme.colors.bgColor};
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.borderColor};
+  &:hover{
+    background-color: ${({theme}) => theme.colors.borderColor};
   }
 
   &:focus {
@@ -82,9 +86,9 @@ export const SliderButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.bgColor};
+  
+  &:hover{
+    background-color: ${({theme}) => theme.colors.bgColor};
   }
 `;
 
